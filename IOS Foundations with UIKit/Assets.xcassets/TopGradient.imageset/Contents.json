@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Lesson 02 Bonus Training Image.jpeg",
+      "filename" : "TopGradient.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "TopGradient@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "TopGradient@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
