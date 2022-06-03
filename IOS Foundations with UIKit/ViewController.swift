@@ -9,39 +9,32 @@ import UIKit
 
 class ViewController: UIViewController {
     let DEBUG_TAG = "⚠️"
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         debugPrint("\(DEBUG_TAG) 123123")
+
+        let stackView = makeStackView(withOrientation: .vertical)
+        stackView.distribution = .fill
         
-        let image = makeImageView(#imageLiteral(resourceName: "rush"))
-        let label = makeLabel(withText: "Title")
-        let button = makeButton(withText: "Get Started")
+        let bigLabel = makeLabelSpecial(withText: "Big", size: 128, color: .darkYellow)
+        let medLabel = makeLabelSpecial(withText: "Med", size: 64, color: .darkOrange)
+        let smallLabel = makeLabelSpecial(withText: "Sml", size: 32, color: .darkGreen)
         
-        view.addSubview(image)
-        view.addSubview(label)
-        view.addSubview(button)
-        
-        NSLayoutConstraint.activate([
-            image.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            image.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
-            image.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8)
-        ])
-        
-        NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 8),
-            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
-            label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8)
-        ])
+        stackView.addArrangedSubview(medLabel)
+        stackView.addArrangedSubview(bigLabel)
+        stackView.addArrangedSubview(smallLabel)
+
+        view.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            button.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 300),
-            button.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
-            button.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
         
-        image.setContentHuggingPriority(UILayoutPriority(249), for: .vertical)
-        image.setContentCompressionResistancePriority(UILayoutPriority(749), for: .vertical)
+        bigLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 249), for: .vertical)
         
     }
 }
