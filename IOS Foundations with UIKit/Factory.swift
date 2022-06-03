@@ -11,16 +11,24 @@ import UIKit
 func makeImageView(_ image: UIImage) -> UIImageView {
     let imageView = UIImageView(image: image)
     imageView.translatesAutoresizingMaskIntoConstraints = false
-    imageView.contentMode = .scaleAspectFill
+    imageView.contentMode = .scaleAspectFit
     return imageView
 }
 
-func makeLabel(withText text: String, textSize: CGFloat, textStyle: UIFont.Weight) -> UILabel {
+func makeLabel(withText text: String) -> UILabel {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.text = text
-    label.numberOfLines = 0
-    label.font = .systemFont(ofSize: textSize, weight: textStyle)
-    label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    label.font = .systemFont(ofSize: 32)
+    label.backgroundColor = .yellow
     return label
+}
+
+func makeButton(withText text: String) -> UIButton {
+    let button = UIButton()
+    button.translatesAutoresizingMaskIntoConstraints = false
+    button.setTitle(text, for: .normal)
+    button.backgroundColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
+    button.contentEdgeInsets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+    return button
 }
