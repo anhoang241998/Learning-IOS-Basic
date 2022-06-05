@@ -19,9 +19,17 @@ func makeLabel(withText text: String) -> UILabel {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.text = text
-    label.font = .systemFont(ofSize: 32)
+    label.numberOfLines = 0
+    label.textAlignment = .center
     label.backgroundColor = .yellow
     return label
+}
+
+func makeSwitch(isOn: Bool) -> UISwitch {
+    let theSwitch = UISwitch()
+    theSwitch.translatesAutoresizingMaskIntoConstraints = false
+    theSwitch.isOn = isOn
+    return theSwitch
 }
 
 func makeButton(withText text: String) -> UIButton {
@@ -60,4 +68,26 @@ extension UIColor {
     static let darkRed = UIColor(red: 255/255, green: 59/255, blue: 48/255, alpha: 1)
     static let darkTeal = UIColor(red: 90/255, green: 200/255, blue: 250/255, alpha: 1)
     static let darkYellow = UIColor(red: 255/255, green: 204/255, blue: 0/255, alpha: 1)
+}
+
+func makeScrollView() -> UIScrollView {
+    let scrollView = UIScrollView()
+    scrollView.translatesAutoresizingMaskIntoConstraints = false
+    return scrollView
+}
+
+func makeSpacerView(height: CGFloat? = nil) -> UIView {
+    let spacerView = UIView(frame: .zero)
+    if let height = height {
+        spacerView.heightAnchor.constraint(equalToConstant: height).setActiveBreakable()
+    }
+    spacerView.translatesAutoresizingMaskIntoConstraints = false
+    return spacerView
+}
+
+extension NSLayoutConstraint {
+    @objc func setActiveBreakable(priority: UILayoutPriority = UILayoutPriority(900)) {
+        self.priority = priority
+        isActive = true
+    }
 }

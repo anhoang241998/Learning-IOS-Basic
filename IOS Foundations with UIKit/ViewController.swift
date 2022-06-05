@@ -9,32 +9,41 @@ import UIKit
 
 class ViewController: UIViewController {
     let DEBUG_TAG = "⚠️"
+    var topConstraint = NSLayoutConstraint()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         debugPrint("\(DEBUG_TAG) 123123")
-
-        let stackView = makeStackView(withOrientation: .vertical)
-        stackView.distribution = .fill
+        setupViews()
+    }
+    
+    func setupViews() {
+        let button = makeButton(withText: "Up/Down")
+        let label = makeLabel(withText: "Watch me!")
         
-        let bigLabel = makeLabelSpecial(withText: "Big", size: 128, color: .darkYellow)
-        let medLabel = makeLabelSpecial(withText: "Med", size: 64, color: .darkOrange)
-        let smallLabel = makeLabelSpecial(withText: "Sml", size: 32, color: .darkGreen)
-        
-        stackView.addArrangedSubview(medLabel)
-        stackView.addArrangedSubview(bigLabel)
-        stackView.addArrangedSubview(smallLabel)
-
-        view.addSubview(stackView)
+        view.addSubview(label)
+        view.addSubview(button)
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            button.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
         
-        bigLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 249), for: .vertical)
+        topConstraint = label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80)
+        topConstraint.isActive = true
         
+        NSLayoutConstraint.activate([
+            label.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+    
+        button.addTarget(self, action: #selector(setOnButtonClicked), for: .primaryActionTriggered)
+    }
+    
+    @objc func setOnButtonClicked(sender: UIButton) {
+        if topConstraint.constant == 80 {
+            topConstraint.constant = 80 * 2
+        } else {
+            topConstraint.constant = 80
+        }
     }
 }
