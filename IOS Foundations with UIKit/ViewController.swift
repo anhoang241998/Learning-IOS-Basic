@@ -13,7 +13,9 @@ class ViewController: UIViewController {
     
     var leadingConstraint = NSLayoutConstraint()
     var trailingConstraint = NSLayoutConstraint()
-
+    
+    let label2 = makeLabelSpecial(withText: "Now you don't", size: 32, color: .red)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         debugPrint("\(DEBUG_TAG) 123123")
@@ -22,34 +24,27 @@ class ViewController: UIViewController {
     
     func setupViews() {
         let button = makeButton(withText: "Left/Right")
-        let label = makeLabel(withText: "Watch me!")
+        let label1 = makeLabel(withText: "Now you see me")
+        let stackView = makeStackView(withOrientation: .vertical)
+        stackView.distribution = .fillProportionally
         
-        view.addSubview(label)
-        view.addSubview(button)
+        stackView.addArrangedSubview(label1)
+        stackView.addArrangedSubview(label2)
+        stackView.addArrangedSubview(button)
+        
+        view.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            button.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            stackView.topAnchor.constraint(equalTo: view.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        
-        topConstraint = label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80)
-        topConstraint.isActive = true
-        
-        leadingConstraint = label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80)
-        trailingConstraint = label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80)
-        
-        leadingConstraint.isActive = true
     
         button.addTarget(self, action: #selector(setOnButtonClicked), for: .primaryActionTriggered)
     }
     
     @objc func setOnButtonClicked(sender: UIButton) {
-        if leadingConstraint.isActive {
-            leadingConstraint.isActive = false
-            trailingConstraint.isActive = true
-        } else {
-            leadingConstraint.isActive = true
-            trailingConstraint.isActive = false
-        }
+        label2.isHidden = !label2.isHidden
     }
 }

@@ -25,6 +25,17 @@ func makeLabel(withText text: String) -> UILabel {
     return label
 }
 
+func makeLabel(withText text: String, size: CGFloat) -> UILabel {
+    let label = UILabel()
+    label.translatesAutoresizingMaskIntoConstraints = false
+    label.text = text
+    label.numberOfLines = 0
+    label.textAlignment = .center
+    label.backgroundColor = .yellow
+    label.font = .systemFont(ofSize: size)
+    return label
+}
+
 func makeSwitch(isOn: Bool) -> UISwitch {
     let theSwitch = UISwitch()
     theSwitch.translatesAutoresizingMaskIntoConstraints = false
@@ -33,6 +44,15 @@ func makeSwitch(isOn: Bool) -> UISwitch {
 }
 
 func makeButton(withText text: String) -> UIButton {
+    let button = UIButton()
+    button.translatesAutoresizingMaskIntoConstraints = false
+    button.setTitle(text, for: .normal)
+    button.backgroundColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
+    button.contentEdgeInsets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+    return button
+}
+
+func makeButton(withText text: String, size: CGFloat) -> UIButton {
     let button = UIButton()
     button.translatesAutoresizingMaskIntoConstraints = false
     button.setTitle(text, for: .normal)
