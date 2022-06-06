@@ -13,10 +13,8 @@
 		3C10238F2844C6F8006E8630 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C10238D2844C6F8006E8630 /* Main.storyboard */; };
 		3C1023912844C6FA006E8630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C1023902844C6FA006E8630 /* Assets.xcassets */; };
 		3C1023942844C6FA006E8630 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C1023922844C6FA006E8630 /* LaunchScreen.storyboard */; };
-		3C2056CD284D97BA00FC430B /* RedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2056CC284D97BA00FC430B /* RedView.swift */; };
-		3C2056CF284D988F00FC430B /* BlueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2056CE284D988F00FC430B /* BlueView.swift */; };
+		3C2056D2284DC00000FC430B /* ImageStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2056D1284DC00000FC430B /* ImageStack.swift */; };
 		3C3743012848A2B500EED770 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3743002848A2B500EED770 /* Factory.swift */; };
-		3C4319312849C06400BEA69D /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4319302849C06400BEA69D /* RowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,10 +26,8 @@
 		3C1023902844C6FA006E8630 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C1023932844C6FA006E8630 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3C1023952844C6FA006E8630 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3C2056CC284D97BA00FC430B /* RedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedView.swift; sourceTree = "<group>"; };
-		3C2056CE284D988F00FC430B /* BlueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueView.swift; sourceTree = "<group>"; };
+		3C2056D1284DC00000FC430B /* ImageStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStack.swift; sourceTree = "<group>"; };
 		3C3743002848A2B500EED770 /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
-		3C4319302849C06400BEA69D /* RowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,22 +60,28 @@
 		3C1023862844C6F8006E8630 /* IOS Foundations with UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				3C2056D0284DBB2800FC430B /* custom_views */,
 				3C3743022848A2BF00EED770 /* assets */,
-				3C1023872844C6F8006E8630 /* AppDelegate.swift */,
-				3C1023892844C6F8006E8630 /* SceneDelegate.swift */,
 				3C10238B2844C6F8006E8630 /* ViewController.swift */,
 				3C10238D2844C6F8006E8630 /* Main.storyboard */,
 				3C3743002848A2B500EED770 /* Factory.swift */,
-				3C4319302849C06400BEA69D /* RowView.swift */,
-				3C2056CC284D97BA00FC430B /* RedView.swift */,
-				3C2056CE284D988F00FC430B /* BlueView.swift */,
 			);
 			path = "IOS Foundations with UIKit";
+			sourceTree = "<group>";
+		};
+		3C2056D0284DBB2800FC430B /* custom_views */ = {
+			isa = PBXGroup;
+			children = (
+				3C2056D1284DC00000FC430B /* ImageStack.swift */,
+			);
+			path = custom_views;
 			sourceTree = "<group>";
 		};
 		3C3743022848A2BF00EED770 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				3C1023872844C6F8006E8630 /* AppDelegate.swift */,
+				3C1023892844C6F8006E8630 /* SceneDelegate.swift */,
 				3C1023902844C6FA006E8630 /* Assets.xcassets */,
 				3C1023922844C6FA006E8630 /* LaunchScreen.storyboard */,
 				3C1023952844C6FA006E8630 /* Info.plist */,
@@ -158,10 +160,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C2056CF284D988F00FC430B /* BlueView.swift in Sources */,
 				3C3743012848A2B500EED770 /* Factory.swift in Sources */,
-				3C4319312849C06400BEA69D /* RowView.swift in Sources */,
-				3C2056CD284D97BA00FC430B /* RedView.swift in Sources */,
+				3C2056D2284DC00000FC430B /* ImageStack.swift in Sources */,
 				3C10238C2844C6F8006E8630 /* ViewController.swift in Sources */,
 				3C1023882844C6F8006E8630 /* AppDelegate.swift in Sources */,
 				3C10238A2844C6F8006E8630 /* SceneDelegate.swift in Sources */,
