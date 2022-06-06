@@ -9,42 +9,56 @@ import UIKit
 
 class ViewController: UIViewController {
     let DEBUG_TAG = "⚠️"
-    var topConstraint = NSLayoutConstraint()
     
-    var leadingConstraint = NSLayoutConstraint()
-    var trailingConstraint = NSLayoutConstraint()
-    
-    let label2 = makeLabelSpecial(withText: "Now you don't", size: 32, color: .red)
+    var stackView: UIStackView = makeStackView(withOrientation: .vertical)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        debugPrint("\(DEBUG_TAG) 123123")
+        
+        registerForOrientationChanges()
         setupViews()
     }
     
+    func registerForOrientationChanges() {
+        NotificationCenter.default.addObserver(self, selector: #selector(rotated), name: UIDevice.orientationDidChangeNotification, object: nil)
+    }
+    
     func setupViews() {
-        let button = makeButton(withText: "Left/Right")
-        let label1 = makeLabel(withText: "Now you see me")
-        let stackView = makeStackView(withOrientation: .vertical)
-        stackView.distribution = .fillProportionally
+        navigationItem.title = "Orientation"
         
-        stackView.addArrangedSubview(label1)
-        stackView.addArrangedSubview(label2)
-        stackView.addArrangedSubview(button)
+        let redView = RedView()
+        let blueView = BlueView()
+        
+        stackView.addArrangedSubview(redView)
+        stackView.addArrangedSubview(blueView)
         
         view.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.topAnchor),
+            redView.heightAnchor.constraint(equalTo: blueView.heightAnchor),
+            redView.widthAnchor.constraint(equalTo: blueView.widthAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-    
-        button.addTarget(self, action: #selector(setOnButtonClicked), for: .primaryActionTriggered)
+        
     }
     
-    @objc func setOnButtonClicked(sender: UIButton) {
-        label2.isHidden = !label2.isHidden
+    @objc func rotated() {
+        if UIDevice.current.orientation.isLandscape {
+            debugPrint("\(DEBUG_TAG) Landscape")
+            stackView.axis = .horizontal
+        } else {
+            debugPrint("\(DEBUG_TAG) Vertical")
+            stackView.axis = .vertical
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
