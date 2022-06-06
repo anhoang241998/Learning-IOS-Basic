@@ -10,6 +10,9 @@ import UIKit
 class ViewController: UIViewController {
     let DEBUG_TAG = "⚠️"
     var topConstraint = NSLayoutConstraint()
+    
+    var leadingConstraint = NSLayoutConstraint()
+    var trailingConstraint = NSLayoutConstraint()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +21,7 @@ class ViewController: UIViewController {
     }
     
     func setupViews() {
-        let button = makeButton(withText: "Up/Down")
+        let button = makeButton(withText: "Left/Right")
         let label = makeLabel(withText: "Watch me!")
         
         view.addSubview(label)
@@ -32,18 +35,21 @@ class ViewController: UIViewController {
         topConstraint = label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80)
         topConstraint.isActive = true
         
-        NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
+        leadingConstraint = label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80)
+        trailingConstraint = label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80)
+        
+        leadingConstraint.isActive = true
     
         button.addTarget(self, action: #selector(setOnButtonClicked), for: .primaryActionTriggered)
     }
     
     @objc func setOnButtonClicked(sender: UIButton) {
-        if topConstraint.constant == 80 {
-            topConstraint.constant = 80 * 2
+        if leadingConstraint.isActive {
+            leadingConstraint.isActive = false
+            trailingConstraint.isActive = true
         } else {
-            topConstraint.constant = 80
+            leadingConstraint.isActive = true
+            trailingConstraint.isActive = false
         }
     }
 }
